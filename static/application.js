@@ -6,7 +6,7 @@ var s = function( p ) {
 	p.setup = function() {
 	    p.createCanvas(500, 410);
 	  // size(400, 400); // second try this
-	  background(-1);
+	  p.background(0);
 	}
 	p.mouseDragged = function() {
 	  p.strokeWeight(6);
