@@ -14,4 +14,4 @@ var s = function( p ) {
 	}
 };
 
-var myp5 = new p5(s, 'canvasContainer');
+var myp5 = new p5(s, 'draw');
