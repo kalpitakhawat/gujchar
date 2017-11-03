@@ -6,7 +6,7 @@
 	<link rel="stylesheet" type="text/css" href="/static/style.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.16/p5.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-	><script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.js" integrity="sha256-Cxf2osSjVdgIUDXd8CR70LjMnQD0TA908QL1v00EtMY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.js" integrity="sha256-Cxf2osSjVdgIUDXd8CR70LjMnQD0TA908QL1v00EtMY=" crossorigin="anonymous"></script>
 </head>
 <body>
 	<nav>
@@ -25,7 +25,11 @@
 		      </ul>
   		</div>
   		<div class="col m12" id="fileUpload">
-  			tab 1
+  			<h3>Upload new File</h3><hr>
+        <form method="post" action="/classify" accept="image/jpg,image/jpeg" enctype="multipart/form-data">
+              <input type=file name='file'>
+             <input type=submit value=Upload>
+        </form>
   		</div>
   		<div class="col m12" id="draw">
   			tab 2
@@ -34,6 +38,6 @@
   </div>
   </main>
     
-	<script src="/static/application.js"></script>
+	<!-- <script src="/static/application.js"></script> -->
 </body>
 </html>
