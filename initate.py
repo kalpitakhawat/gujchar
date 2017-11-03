@@ -88,4 +88,4 @@ def upload_canvas():
 			return "404"
 
 if __name__ == '__main__':
-	app.run(port=80)
+	app.run()
