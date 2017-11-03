@@ -2,6 +2,9 @@
     color:white; 
     background: #00acc1;
   }
+  .tabs{
+  	overflow-x: hidden!important;
+  }
 #fileUpload,#draw{
 	padding-left:5%;
 	padding-right: 5%;
