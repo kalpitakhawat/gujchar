@@ -87,5 +87,5 @@ def upload_canvas():
 		else:
 			return "404"
 
-# if __name__ == '__main__':
-	# app.run(port=33507)
+if __name__ == '__main__':
+	app.run()
