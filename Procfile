@@ -1,1 +1,1 @@
-web: gunicorn initate:app
+web: gunicorn initate:initate
