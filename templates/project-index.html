@@ -9,6 +9,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.16/p5.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.js" integrity="sha256-Cxf2osSjVdgIUDXd8CR70LjMnQD0TA908QL1v00EtMY=" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="http://malsup.github.io/jquery.form.js"></script>
 </head>
 <body class="grey lighten-4">
 	<nav class="indigo">
@@ -29,19 +30,41 @@
   		<div class="col m12 white" id="fileUpload" align="center">
   			<h3>Upload new File</h3>
         <form method="post" action="/classifyUpload" accept="image/jpg,image/jpeg" enctype="multipart/form-data">
-              <input type='file' name='file'>
-             <button class="btn waves-effect waves-light indigo" type='submit'> Recognize </button>
+            <input type='file' id="file" name='file'>
+            <button class="btn waves-effect waves-light indigo" type='submit'> Recognize </button>
         </form>
+        <br>
   		</div>
   		<div class="col m12 white" id="draw" align="center">
         <br>
-        <button type="button" class="btn waves-effect waves-light indigo col m12 s10" type='submit'> Recognize what you wrote </button> 
+        <button type="button" onclick="dwawing()" class="btn waves-effect waves-light indigo col m12 s10" type='submit'> Recognize what you wrote </button> 
 
   		</div>
   	</div>
   </div>
   </main>
-    
+
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+       <div class="beforeu hideme">
+         <h4>Uploading</h4>
+         <div class="progress">
+              <div class="determinate bar" ></div>
+          </div>        
+       </div>
+       <div class="hideme afteru">
+         <h4>Classifying</h4>
+          <div class="progress">
+            <div class="indeterminate"></div>
+          </div>
+       </div>
+       <div class="hideme doneu">
+         <h4 id="finale"> </h4>
+       </div>
+      </div>
+      
+    </div>
+  </div>
 	<script src="/static/application.js"></script>
 </body>
 </html>

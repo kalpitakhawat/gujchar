@@ -4,9 +4,9 @@ from werkzeug.utils import secure_filename
 import copy
 import base64
 import random
-
-# import requests
-
+import uuid
+import requests
+import mimetypes
 
 app = Flask(__name__)
 
@@ -28,16 +28,23 @@ def allowed_file(filename):
 		filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 def get_hash():
-	return ''.join('%02x' % ord(x) for x in os.urandom(16))
+	return str(uuid.uuid4())
 
 def classify( imgName ):
-	return True
+	url = 'https://gateway-a.watsonplatform.net/visual-recognition/api/v3/classify/?api_key=108d0c27c19e91f6cd71acd2e7a577efae08152e&version=2016-05-20&owners=me&threshold=0'
+	with open("./uploads/"+imgName, 'rb') as image:
+		filename = image.name
+		mime_type = mimetypes.guess_type(filename)[0] or 'application/octet-stream'
+		files = {'test': (filename, image, mime_type)}
+		r = requests.request(method = "POST", url= url, files=files)
+		print(r.text)
+	
+	return r.text
 
 @app.route('/')
 def root():
 	return render_template('project-index.html')
 	# url=request.form.get('url') ;
-
 
 
 @app.route('/classifyUpload', methods=['GET', 'POST'] )
@@ -51,31 +58,34 @@ def upload_file():
 		if file.filename == '':
 			flash('No selected file')
 			return redirect(request.url)
+
 		if file and allowed_file(file.filename):
 			filename = secure_filename(file.filename)
 			filename+=get_hash()+filename
-			file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-			
+			file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))	
+			catched = classify( filename )
 			# call classifier
-			return "yep "+ filename
+			return catched
 	return '404'
 
 
 @app.route('/classifyCanvas',methods=['GET', 'POST'])
 def upload_canvas(): 
 		if request.method == 'POST':
-			image_binary=base64.decodestring()
+			# print ( type(request.form['imagebase']) )
+			# return 'c'
+			image_binary = base64.b64decode( request.form['imagebase'].split(",")[1] )
 			filename = get_hash()+".jpg"
 			imgpath = './uploads/'+filename
 			with open(imgpath,'wb') as f:
 				f.write(image_binary)
 			
 			# call classifier
-			return "yep "+ filename
+			catched = classify( filename )
+
+			return catched
 		else:
 			return "404"
 
 if __name__ == '__main__':
 	app.run(debug=True)
-
-
