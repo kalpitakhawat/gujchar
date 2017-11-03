@@ -3,18 +3,28 @@ function random(min, max){
 	return Math.floor(Math.random()*(max-min+1)+min);
 
 }
+reinit = false;
+
+
 $(document).ready(function(){
 	$('.modal').modal();
 });
 
 var s = function( p ) {
 
-  var x = 100; 
-  var y = 100;
-
 	p.setup = function() {
 	  p.createCanvas(350, 400);
 	  p.background(255);
+	}
+	p.draw = function(){
+		if( reinit ){
+			reinit = false;
+			p.fill(255);
+	 		p.stroke(255);
+			p.rect(0,0,350,400);
+	 		p.stroke(0);
+
+		}
 	}
 	p.mouseDragged = function() {
 	  p.strokeWeight(30);
@@ -123,4 +133,8 @@ function dwawing(){
 	})
 
 	
+}
+
+function clearCanvas(){
+	reinit	= true;
 }
