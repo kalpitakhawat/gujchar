@@ -10,21 +10,18 @@
 </head>
 <body>
 	<nav>
-    <div class="nav-wrapper">
+    <div class="nav-wrapper container">
       <a href="#" class="brand-logo">Logo</a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="sass.html">Sass</a></li>
-        <li><a href="badges.html">Components</a></li>
-        <li><a href="collapsible.html">JavaScript</a></li>
-      </ul>
     </div>
   </nav>
-  <div class="container">
+  <br>
+  <main>
+  	<div class="container">
   	<div class="row">
   		<div class="col m12">
   			<ul class="tabs">
-		        <li class="tab col s3"><a href="#fileUpload">Test 1</a></li>
-		        <li class="tab col s3"><a class="active" href="#draw">Test 2</a></li>
+		        <li class="tab col s6"><a href="#fileUpload">Upload Image</a></li>
+		        <li class="tab col s6"><a class="active" href="#draw">Draw</a></li>
 		      </ul>
   		</div>
   		<div class="col m12" id="fileUpload">
@@ -35,11 +32,8 @@
   		</div>
   	</div>
   </div>
-    <h1>Upload new File</h1>
-    <form method="post" action="/classify" accept="image/jpg,image/jpeg" enctype="multipart/form-data">
-      <p><input type=file name='file'>
-         <input type=submit value=Upload>
-    </form>
+  </main>
+    
 	<script src="/static/application.js"></script>
 </body>
 </html>
