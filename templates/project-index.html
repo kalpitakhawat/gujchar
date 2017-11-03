@@ -2,13 +2,15 @@
 <html>
 <head>
 	<title>GujChar</title>
+  <meta name="viewport" content="width=device-width, initial-scale=0.6">
+
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css" integrity="sha256-e22BQKCF7bb/h/4MFJ1a4lTRR2OuAe8Hxa/3tgU5Taw=" crossorigin="anonymous" />
 	<link rel="stylesheet" type="text/css" href="/static/style.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.16/p5.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.js" integrity="sha256-Cxf2osSjVdgIUDXd8CR70LjMnQD0TA908QL1v00EtMY=" crossorigin="anonymous"></script>
 </head>
-<body>
+<body class="grey lighten-4">
 	<nav class="indigo">
     <div class="nav-wrapper container">
       <a href="#" class="brand-logo">Guj Char</a>
@@ -18,26 +20,28 @@
   <main>
   	<div class="container">
   	<div class="row">
-  		<div class="col m12">
+  		<div class="col m12 s12">
   			<ul class="tabs">
 		        <li class="tab col s6"><a href="#fileUpload">Upload Image</a></li>
 		        <li class="tab col s6"><a class="active" href="#draw">Draw</a></li>
 		      </ul>
   		</div>
-  		<div class="col m12" id="fileUpload">
-  			<h3>Upload new File</h3><hr>
-        <form method="post" action="/classify" accept="image/jpg,image/jpeg" enctype="multipart/form-data">
-              <input type=file name='file'>
-             <input type=submit value=Upload>
+  		<div class="col m12 white" id="fileUpload" align="center">
+  			<h3>Upload new File</h3>
+        <form method="post" action="/classifyUpload" accept="image/jpg,image/jpeg" enctype="multipart/form-data">
+              <input type='file' name='file'>
+             <button class="btn waves-effect waves-light indigo" type='submit'> Recognize </button>
         </form>
   		</div>
-  		<div class="col m12" id="draw">
-  			tab 2
+  		<div class="col m12 white" id="draw" align="center">
+        <br>
+        <button type="button" class="btn waves-effect waves-light indigo col m12 s10" type='submit'> Recognize what you wrote </button> 
+
   		</div>
   	</div>
   </div>
   </main>
     
-	<!-- <script src="/static/application.js"></script> -->
+	<script src="/static/application.js"></script>
 </body>
 </html>

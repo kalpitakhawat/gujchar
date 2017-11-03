@@ -2,12 +2,20 @@
     color:white; 
     background: #00acc1;
   }
+#fileUpload,#draw{
+	padding-left:5%;
+	padding-right: 5%;
+}
 
   .tabs .tab a.active, a:hover {
-    color:#fbc02d!important; 
+    color:#fff176!important; 
     background: #00bcd4!important;
   }
 .tabs .indicator{
-		background-color:#fbc02d!important;  
+		background-color:#fff176!important;  
 }
 
+canvas{
+	box-shadow: 0 0px 4px rgba(0,0,0,0.2);
+	margin-top: 20px;
+}

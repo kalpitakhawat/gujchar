@@ -1,16 +1,16 @@
 var s = function( p ) {
 
+
   var x = 100; 
   var y = 100;
 
 	p.setup = function() {
-	    p.createCanvas(500, 410);
-	  // size(400, 400); // second try this
-	  p.background(0);
+	  p.createCanvas(350, 400);
+	  p.background(255);
 	}
 	p.mouseDragged = function() {
-	  p.strokeWeight(6);
-	  p.line(pmouseX, pmouseY, mouseX, mouseY);
+	  p.strokeWeight(40);
+	  p.line(p.pmouseX, p.pmouseY, p.mouseX, p.mouseY);
 	}
 };
 
