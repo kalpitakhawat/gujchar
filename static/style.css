@@ -10,15 +10,16 @@
 	padding-right: 5%;
 }
 
-  .tabs .tab a.active, a:hover {
-    color:#fff176!important; 
-    background: #00bcd4!important;
-  }
+.tabs .tab a.active, a:hover {
+  color:#fff176!important; 
+  background: #00bcd4!important;
+}
 .tabs .indicator{
 		background-color:#fff176!important;  
 }
 
 canvas{
-	box-shadow: 0 0px 4px rgba(0,0,0,0.2);
+	box-shadow: 0 0px 4px rgba(0,0,0,0.4);
+  border : 1px solid #888;
 	margin-top: 20px;
 }

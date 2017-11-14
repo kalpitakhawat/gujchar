@@ -33,17 +33,17 @@ var s = function( p ) {
 };
 
 var maxClass = function( classes ){
-	var m = undefined;
-	console.log(classes);
-	for ( i in classes ){
-		if( m == undefined ){
-			m = classes[i];
-		}
-		if (m.score < classes[ i ].score){
-			m = classes[ i ]
+	var m = [];
+	
+  for ( i in classes ){
+		if (classes[ i ].score > 0.9){
+			m.push(classes[ i ])
 		}
 	}
-	return m;
+  
+  if( m.length > 1)
+	 return [m[0],m[1]]
+  return m
 }
 var myp5 = new p5(s, 'draw');
 
@@ -54,11 +54,12 @@ var myp5 = new p5(s, 'draw');
 
     $('form').ajaxForm({
         beforeSend: function() {
-        	$('.btn').attr('disabled','true');
-		    $('.hideme').hide();
-		    $('.beforeu').show();
+        	
+          $('.btn').attr('disabled','true');
+    	    $('.hideme').hide();
+    	    $('.beforeu').show();
 
-			$('#modal1').modal('open');
+			   $('#modal1').modal('open');
 
             var percentVal = '0%';
             bar.width(percentVal);
@@ -79,12 +80,20 @@ var myp5 = new p5(s, 'draw');
            var  response = JSON.parse(xhr.responseText);
            console.log(response);
            var cl = response.images[0].classifiers[0].classes;
+           
            var mx = maxClass ( cl );
            console.log(mx);
-           if( mx.score > 0.5 ){
-           	$("#finale").html('\"'+kakko[ mx.class ]+'" Classified.' ); 
+           if ( mx.length ){
+             if( mx.length == 1 ){
+              $("#finale").html('\"'+kakko[ mx[0].class ]+'" Classified.' ); 
+             }else{
+                $("#finale").html('Multiple Possible Classification<hr>')
+                 for( i in mx ){
+                       $("#finale").append('<li>"'+kakko[ mx[i].class ]+'" - '+ (mx[i].score*100)+" %</li>" )
+                 }
+             }
            }else{
-        	$("#finale").html('Sorry, Classification failed :\'('); 
+            $("#finale").html('Sorry, Classification failed :\'('); 
            } 
            $('.btn').removeAttr('disabled');
            $('.doneu').show();
@@ -123,11 +132,19 @@ function dwawing(){
            var cl = response.images[0].classifiers[0].classes;
            var mx = maxClass ( cl );
            console.log(mx);
-           if( mx.score > 0.5 ){
-           	$("#finale").html('\"'+kakko[ mx.class ]+'" Classified.' ); 
-           }else{
-        	$("#finale").html('Sorry, Classification failed :\'('); 
-           } 
+          if ( mx.length ){
+             if( mx.length == 1 ){
+              $("#finale").html('\"'+kakko[ mx[0].class ]+'" Classified.' ); 
+             }else{
+                $("#finale").html('Multiple Possible Classification<hr>')
+                 for( i in mx ){
+                       $("#finale").append('<li>"'+kakko[ mx[i].class ]+'" - '+ (mx[i].score*100)+" %</li>" )
+                 }
+             }
+          }
+          else{
+            $("#finale").html('Sorry, Classification failed :\'('); 
+          } 
            $('.btn').removeAttr('disabled');
            $('.doneu').show();
 	})
